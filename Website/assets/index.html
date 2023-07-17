@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>spooki</title>
+        <link rel="shortcut icon" type="image/x-icon" href="assets/octopus_pink.png"/>
+        <link rel="stylesheet" href="assets/style.css"/>
+        <meta content="spooki" property="og:title"/>
+        <meta content="spooki was here" property="og:description"/>
+        <meta content="https://www.xyzo.space" property="og:url"/>
+        <meta content="assets/octopus_pink" property="og:image"/>
+        <meta content="#0000FF" data-react-helmet="true" name="theme-color"/>
+    </head>
+
+    <body>
+        <div id="particles-js"></div>
+        <script src="assets/particles/particles.js"></script>
+        <script src="assets/particles/app.js"></script>
+        <script src="assets/rythm.js"></script>
+
+        <audio loop src="assets/disaster.mp3" id="audio"></audio>
+
+        <script>
+            var has_init = false
+            var audio = document.getElementById("audio"); audio.volume = 0.075;
+
+            function audio_init() {
+                if (has_init) return
+                audio.play().then(() => {
+                    var rythm = new Rythm()
+                    rythm.addRythm('img', 'image-shadow', 0, 10)
+                    rythm.addRythm('title', 'text-shadow', 0, 10)
+                    rythm.addRythm('text', 'text-shadow', 0, 10)
+                    rythm.connectExternalAudioElement(audio)
+                    rythm.start()
+                    document.getElementsByClassName('container_main')[0].style.visibility = 'visible'
+                    document.getElementsByClassName('container_init')[0].style.visibility = 'hidden'
+                    has_init = true
+                    console.log('initalized')
+                })
+            }
+
+            audio_init()
+            window.onclick = () => {
+                audio_init()
+            }
+
+            document.addEventListener('contextmenu', event => event.preventDefault())
+
+        </script>
+
+        <div class="container_init">
+            <a class="title">press to enter</a>
+        </div>
+
+        <div class="container_main">
+            <img class='img' src="assets/octopus_white.png">
+            <a class="title">spooki</a>
+            <ul>
+                [
+                <a class="text" href="https://discordapp.com/users/471217284086759424/" target="_blank">discord</a>
+                |
+                <a class="text" href="https://discord.gg/gqYUGZXHVN">server</a>
+                ]
+            </ul>
+        </div>
+    </body>
+
+</html>
